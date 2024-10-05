@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 .Productsflex {
   display: grid;
   width: 100%;
@@ -10,17 +9,20 @@
   padding: 2rem;
 }
 
-
-
-
-
 .productCard {
   display: flex;
   flex-direction: column;
   padding: 10px;
   width: 100%;
-  cursor: pointer;
-  border: 1px solid rgba($color: #aaaaaa, $alpha: 0.6);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 5px;
+  //border: 1px solid rgba($color: #aaaaaa, $alpha: 0.6); 
+}
+
+.productCard:hover {
+  transform: scale(1.001);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 .imageWrapper {
@@ -31,7 +33,6 @@
 }
 
 .image {
-  transition: opacity 0.8s ease;
   position: absolute;
   top: 0;
   left: 0;
@@ -52,28 +53,27 @@
   padding: 1rem;
   color: black;
   background-color: transparent;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
+  text-align: left;
+  //justify-content: center;
+  //align-items: center;
 }
 
-
 .title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin: 0;
-  color: #333;
+  color: rgba($color: #303030, $alpha: 1);
   letter-spacing: .15em;
-  font-family: Cormorant, serif;
+  font-family: "Cormorant Garamond", serif;
   font-style: normal;
   text-transform: uppercase;
-  font-weight: 100;
+  font-weight: 500;
 }
 
 .description {
   font-size: 0.9rem;
-  color: #333;
+  color: rgba($color: #303030, $alpha: 0.7);
   letter-spacing: .15em;
-  font-family: Cormorant, serif;
+  font-family: "Cormorant Garamond", serif;
   font-style: normal;
   text-transform: uppercase;
   font-weight: 100;
@@ -81,17 +81,27 @@
 }
 .PriceRange{
   display: flex;
-  justify-content: center; /* Centers horizontally within the container */
-  align-items: center; /* Centers vertically within the container (if needed) */
+  //justify-content: center; 
+  //align-items: center;
   gap: 0.5rem;
 
 }
-.price {
-  margin: 0;
-  font-size: 1rem;
-  color: #333;
-  letter-spacing: .15em;
+.tnSign{
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  padding-top: 6px;
+  text-transform: uppercase;
+  color: rgba($color: #303030, $alpha: .4);
   font-family: Cormorant, serif;
+  font-style: normal;
+  font-weight: 100;
+}
+.price {
+  font-size: 1.1rem;
+  margin: 0;
+  color: rgba($color: #303030, $alpha: 0.7);
+  letter-spacing: .15em;
+  font-family: "Cormorant Garamond", serif;
   font-style: normal;
   text-transform: uppercase;
   font-weight: 100;
@@ -113,7 +123,12 @@
   }
 
   .price {
-    font-size: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .tnSign{
+    font-size: 10px;
+    padding-top: 6px;
   }
 }
 
@@ -122,97 +137,4 @@
   width: 100%;
   padding-top: 100%;
   overflow: hidden;
-}
-
-.hyperPoint {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: transparent; /* Make the center transparent */
-  position: absolute;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  border: 1px solid white; /* Outer circle border */
-  box-shadow: 0 0 0 1px transparent, /* Create transparent gaps */
-              0 0 0 1px white,       /* Outer visible part of the "target" */
-              0 0 0 1px transparent; /* Transparent space around the outer border */
-  
-  transition: transform 0.3s ease-in-out; /* Smooth spin animation */
-
-
-  /* Add a pseudo-element for the inner circle */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: white; /* Inner circle */
-    transform: translate(-50%, -50%);
-  }
-}
-
-.tooltip {
-  position: absolute;
-  background-color: white;
-  color: black;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #000; // Dark border for the comic effect
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 999999;
-  width: 200px;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  transform: translate(-50%, -50%);
-}
-
-.tooltipImage {
-  width: 75px; // Adjust size as needed
-  height: 75px;
-  flex-shrink: 0;
-}
-
-.tooltipContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.productName {
-  font-size: 14px;
-  margin: 0;
-  color: #333;
-  letter-spacing: .15em;
-  font-family: Cormorant, serif;
-  font-style: normal;
-  text-transform: uppercase;
-  font-weight: 100;
-}
-
-.productPrice {
-  font-size: 12px;
-  margin: 5px 0 0;
-  color: #333;
-  letter-spacing: .15em;
-  font-family: Cormorant, serif;
-  font-style: normal;
-  text-transform: uppercase;
-  font-weight: 100;
-}
-
-// Adding the chat bubble arrow effect
-.tooltip::after {
-  content: '';
-  position: absolute;
-  bottom: 100%; /* Position it above the tooltip */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent white transparent; /* Arrow pointing down */
 }

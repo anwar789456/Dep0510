@@ -2,23 +2,23 @@
 .header {
     position: fixed;
     display: flex;
-    z-index: 999999999;
+    z-index: 99999999;
     top: 0;
-    padding: 30px;
-    height: 4rem;
+    padding: 0px;
+    height: 3rem;
     justify-content: space-between;
     width: 100%;
     box-sizing: border-box;
     align-items: center;
     transition: background .2s ease-in-out;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba($color: #f3f2ec, $alpha: .1);
     .paragraph {
         color: #c6c6c6;
         letter-spacing: .2em;
         font-size: 14px;
-        font-family: Cormorant, serif;
+        font-family: "Cormorant Garamond", serif;
         font-style: normal;
-        font-weight: 100;
+        font-weight: 500;
         margin-left: 4px;
     }
     .nav_top {
@@ -32,7 +32,7 @@
             z-index: 10001;
             position: fixed;
             width: 15rem;
-            top: 1rem;
+            top: 0.5rem;
             left: 1rem;
         }
         .blacklogo{
@@ -136,7 +136,7 @@
         .searchIconDiv,.cartIconDiv{
             display: flex;
             font-size: 20px;
-            color: #c6c6c6;
+            color: rgb(231, 231, 231);
             cursor: pointer;
             transform: scale(1);
             transition: transform 0.1s ease-in;
@@ -144,18 +144,18 @@
         .cartIconDiv{
             margin-left: 1rem;
         }
-        .searchIconDiv:hover,.cartIconDiv:hover{
+        /*.searchIconDiv:hover,.cartIconDiv:hover{
             color: rgb(36, 34, 34);
-            transform: scale(1.1);
+            //transform: scale(1.1);
             transition: transform 0.1s ease-in;
-        }
+        }*/
         .PIcon{
-            color: #c6c6c6;
+            color: rgb(231, 231, 231);
             letter-spacing: .2em;
             font-size: 14px;
-            font-family: Cormorant, serif;
+            font-family: "Cormorant Garamond", serif;
             font-style: normal;
-            font-weight: 100;
+            font-weight: 500;
             margin-left: 4px;
             display: none;
         }
@@ -197,24 +197,32 @@
     }
 }
 
+
+@media (max-width: 838px) {
+    .nav_top .logo.logo {
+        width: 10rem;
+    }
+}
+@media (max-width: 400px) {
+    .nav_top .logo.logo {
+        width: 9rem;
+    }
+}
+
 @media (max-width: 837px) {
     .header .nav, .HeaderSticky .nav {
         display: none;
     }
     .nav_top .logo.logo {
-        top: 1.5rem;
+        top: 1rem;
         left: 50%;
         transform: translateX(-50%);
-        width: 10rem;
     }
 }
 
 @media (min-width: 670px) {
     .header {
         .icons{
-            .margedRight{
-                padding-right: 2rem;
-            }
             .searchIconDiv,.cartIconDiv{
                 font-size: 20px;
             }
@@ -231,7 +239,7 @@
 .headerPhoneNav {
     position: fixed;
     left: 10px;
-    top: 10px;
+    top: 3px;
     z-index: 99999999999999;
     display: none;
     .menuPhoneNav {
@@ -244,7 +252,17 @@
 }
 
 @media (max-width: 837px) {
+    
     .headerPhoneNav {
         display: block;
     }
 }
+
+/*
+@media (max-width: 500px) {
+    .header{
+        height: 3.5rem;
+    }
+    
+}
+*/

@@ -1,9 +1,9 @@
 .searchBar {
     position: fixed;
-    top: 4rem;
+    top: 3rem;
     left: 0;
     width: 100vw;
-    height: 60px;
+    height: 3rem;
     background-color: #f3f2ec;
     border-bottom: 1px solid #ddd;
     display: flex;
@@ -15,10 +15,21 @@
 }
 .searchContainer {
   position: relative;
+  display: flex;
+  align-items: center;
 }
+
+.searchIcon {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba($color: #303030, $alpha: .8);
+}
+
 .animatedLine {
   position: absolute;
-  bottom: -1px;
+  bottom: 2px;
   left: 50%;
   width: 0;
   height: 2px;
@@ -26,8 +37,8 @@
   transition: width 0.4s ease, left 0.4s ease;
 }
 .searchInput:focus + .animatedLine {
-  width: 100%;
-  left: 0;
+  width: 100vw;
+  left: -20px;
 }
 .searchContent {
     display: flex;
@@ -37,81 +48,63 @@
 .searchInput {
     width: 95vw;
     height: 60px;
-    padding: 5px;
+    padding: 5px 40px;
     background: none;
     outline: none;
     border: none;
     color: rgba($color: #303030, $alpha: 1);
-    font-family: Cormorant, serif;
+    font-family: "Cormorant Garamond", serif;
     font-style: normal;
     text-decoration: none;
-    font-weight: 100;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: .2em;
     font-size: 15px;
 }
+
 .closeButton {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 24px;
-    color: #000;
+    color: rgba($color: #303030, $alpha: .8);
 }
-  /* Basic styling for the placeholder */
+
+/* Basic styling for the placeholder */
 .searchInput::placeholder {
     color: rgba($color: #303030, $alpha: 0.7);
-    font-family: Cormorant, serif;
+    font-family: "Cormorant Garamond", serif;
     font-style: normal;
     text-decoration: none;
-    font-weight: 100;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: .2em;
     font-size: 15px;
 }
   
-  /* Placeholder styling for WebKit browsers (Chrome, Safari, Opera) */
+/* Placeholder styling for WebKit browsers (Chrome, Safari, Opera) */
 .searchInput::-webkit-input-placeholder {
     color: rgba($color: #303030, $alpha: 0.7);
-    font-family: Cormorant, serif;
+    font-family: "Cormorant Garamond", serif;
     font-style: normal;
     text-decoration: none;
-    font-weight: 100;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: .2em;
     font-size: 15px;
 }
-  
-  /* Placeholder styling for Firefox */
-.searchInput::-moz-placeholder {
-    color: rgba($color: #303030, $alpha: 0.7);
-    font-family: Cormorant, serif;
-    font-style: normal;
-    text-decoration: none;
-    font-weight: 100;
-    text-transform: uppercase;
-    letter-spacing: .2em;
-    font-size: 22px;
-}
-  
-  /* Placeholder styling for Internet Explorer 10+ */
-.searchInput:-ms-input-placeholder {
-    color: rgba($color: #303030, $alpha: 0.7);
-    font-family: Cormorant, serif;
-    font-style: normal;
-    text-decoration: none;
-    font-weight: 100;
-    text-transform: uppercase;
-    letter-spacing: .2em;
-    font-size: 22px;
-}
-  
-  /* Placeholder styling for Microsoft Edge */
+
+
+/* Placeholder styling for Microsoft Edge */
 .searchInput::-ms-input-placeholder {
     color: rgba($color: #303030, $alpha: 0.7);
-    font-family: Cormorant, serif;
+    font-family: "Cormorant Garamond", serif;
     font-style: normal;
     text-decoration: none;
-    font-weight: 100;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: .2em;
     font-size: 22px;
@@ -120,9 +113,9 @@
 .searchResults {
     position: absolute;
     left: 0;
-    top: 60px;
+    top: 3rem;
     width: 100vw;
-    height: calc(100vh - 124px);
+    //height: 10vh;
     background-color: #eeeeed;
     overflow-y: auto;
     z-index: 9;
@@ -132,22 +125,23 @@
 .foundProducts {
   display: flex;
   flex-wrap: wrap; /* Allows items to wrap to the next line */
-  gap: 16px; /* Optional: Adds spacing between items */
+  gap: 5px; /* Optional: Adds spacing between items */
+  justify-content: center; /* Centers items horizontally */
+  //align-items: center; /* Centers items vertically */
+  width: 100%; /* Ensures the container spans the full width */
+  //min-height: 50vh; /* Ensure some vertical space is reserved */
 }
 
 .productItem {
-  width: 350px;
-  box-sizing: border-box; /* Includes padding and border in the width calculation */
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  font-size: 16px;
+  width: 160px;
+  box-sizing: border-box;
 }
 
 .noProductsFound {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -156,10 +150,10 @@
 
 .noProductsFound p{
     color: rgba($color: #303030, $alpha: 0.7);
-    font-family: Cormorant, serif;
+    font-family: "Cormorant Garamond", serif;
     font-style: normal;
     text-decoration: none;
-    font-weight: 100;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: .2em;
     font-size: 22px;
@@ -171,14 +165,8 @@
   }
 }
 
-@media (max-width: 690px) {
-  .searchInput {
-      width: 85vw;
-  }
-}
-
-@media (max-width: 500px) {
-  .searchInput {
-      width: 80vw;
+@media (max-width: 670px) {
+  .closeButton {
+    right: 8px;
   }
 }

@@ -4,56 +4,202 @@
     right: 0;
     width: 35vw;
     height: 100vh;
-    background: white;
+    background: #f3f2ec;
     box-shadow: -4px 0 6px rgba(0, 0, 0, 0.2);
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
     z-index: 9999999999;
-    padding-top: 1rem;
+    padding-top: 1px;
     display: flex;
     flex-direction: column;
 }
 
 .closeButton {
     position: absolute;
-    top: 2rem;
-    right: 1rem;
+    top: .8rem;
+    right: 1.5rem;
     background: none;
     border: none;
-    font-size: 1.5rem;
     cursor: pointer;
     color: #333;
     display: flex;
     align-items: center; /* Aligns items vertically */
 }
-
+/*
 .closeH1 {
     color: rgba(48, 48, 48, 0.6);
-    font-family: Cormorant, serif;
+    font-family: "Cormorant Garamond", serif;
     font-style: normal;
     text-decoration: none;
     font-weight: 100;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     font-size: 20px;
-    margin-right: 1rem; /* Space between text and icon */
-}
+    margin-right: 1rem;
+}*/
 
 .headerContainer{
     width: 100%;
     border-bottom: 0.5px solid rgba($color: #303030, $alpha: 0.2);
 }
 .cartTitle {
-    padding: 1rem 2rem;
+    padding: 11.5px 2rem;
     .cartH1{
-        font-family: Cormorant, serif;
+        font-family: "Cormorant Garamond", serif;
         font-style: normal;
         text-decoration: none;
         font-weight: 100;
         text-transform: uppercase;
         letter-spacing: 0.2em;
-        font-size: 20px;
-        color: rgba(48, 48, 48, 0.6);
+        font-size: 15px;
+        color: rgba($color: #303030, $alpha: 1.0);
+    }
+}
+
+.cartItemsContainer {
+    padding: 0.5rem;
+    overflow-y: auto;
+    position: relative;
+    height: calc(100vh - 3rem);
+}
+
+.emptyCart{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    width: 100%;
+    text-align: center;
+}
+
+.emptyCartText{
+    font-family: "Cormorant Garamond", serif;
+    font-style: normal;
+    text-decoration: none;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 15px;
+    color: rgba($color: #303030, $alpha: 0.8);
+}
+  
+.cartItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba($color: #303030, $alpha: 0.2);
+}
+
+.itemInfo {
+    font-family: "Cormorant Garamond", serif;
+    font-style: normal;
+    text-decoration: none;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 15px;
+    color: rgba($color: #303030, $alpha: 1.0);
+    display: flex;
+    flex-direction: column;
+}
+
+.itemActions {
+    .quantityController{
+        position: relative;
+        border: 1px solid rgba($color: #303030, $alpha: 0.3);
+        padding: 2px 30px;
+
+        .minusButton{
+            position: absolute;
+            left: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba($color: #303030, $alpha: 1.0);
+        }
+
+        .quantityValue{
+            font-family: Cormorant, serif;
+            color: rgba($color: #303030, $alpha: 0.8);
+        }
+
+        .plusButton{
+            position: absolute;
+            right: 1px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba($color: #303030, $alpha: 1.0);
+        }
+    }
+
+    display: flex;
+    align-items: center;
+}
+
+.removeButton {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 15px;
+    margin-left: 10px;
+    font-size: 16px;
+
+    //background-color: rgba($color: #8d0909, $alpha: 1.0);
+    color: rgba($color: #8d0909, $alpha: 1.0);
+    border: 1px solid rgba($color: #8d0909, $alpha: 0.6);
+
+    padding: 0.25rem 0.4rem;
+    cursor: pointer;
+
+    transition: all 0.2s ease-in-out;
+}
+.removeButton:hover {
+    color: #e2e2e2;
+    background-color: rgba($color: #8d0909, $alpha: 1);
+}
+
+
+.totalPrice{
+    position: relative;
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    padding-bottom: 0;
+    border-bottom: 1px solid rgba($color: #303030, $alpha: 0.5);
+
+    .totalPriceText{
+        position: absolute;
+        left: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border-radius: 15px;
+        margin-left: 10px;
+        font-size: 16px;
+    }
+
+    .totalPriceTextValue{
+        position: absolute;
+        right: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 18px;
+
+        .tndSign{
+            font-size: 14px;
+            letter-spacing: 0;
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 100;
+        }
     }
 }
 
@@ -63,9 +209,15 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .cartContainer {
         width: 80vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .cartContainer {
+        width: 90vw;
     }
 }
 

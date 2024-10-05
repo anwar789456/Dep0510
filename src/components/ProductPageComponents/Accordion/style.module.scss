@@ -27,7 +27,7 @@
           text-transform: uppercase;
           font-family: Cormorant, serif;
           font-style: normal;
-          font-weight: 100;
+          font-weight: 500;
   
           &:hover {
             color: rgba($color: #000000, $alpha: 0.8);
@@ -52,10 +52,10 @@
             margin: 3px 0;
             color: rgba($color: #303030, $alpha: 0.8);
             letter-spacing: .05em;
-            font-size: 19px;
+            font-size: 17px;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-style: normal;
-            font-weight: bold;
+            font-weight: 500;
           }
         }
       }

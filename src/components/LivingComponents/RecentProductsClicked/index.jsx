@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchProducts } from '../../../api/fetchProducts';
 import styles from './style.module.scss';
 import Image from 'next/image';
-import { Virtual, Navigation, Pagination } from 'swiper/modules';
+import { FreeMode, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -32,51 +32,55 @@ export default function RecentProductsClicked() {
       </div>
       <Swiper
         className={styles.swiperContainer}
-        slidesPerView={4}
-        spaceBetween={20}
-        centeredSlides={false}
-        navigation
-        pagination={{
+        centeredSlides={true}
+        slidesPerView={2}
+        spaceBetween={15}
+        freeMode={true}
+        modules={[FreeMode]}
+        
+        /*pagination={{
           dynamicBullets: true,
           clickable: true,
-        }}
-        modules={[Pagination, Navigation]}
+        }}*/
+        //modules={[Pagination]}
+        
         breakpoints={{
           '@0.00': {
-            slidesPerView: 1,
-            spaceBetween: 0,
+            slidesPerView: 2,
+            spaceBetween: 15,
           },
           '@0.75': {
-            slidesPerView: 2,
-            spaceBetween: 5,
+            slidesPerView: 3,
+            spaceBetween: 15,
           },
           '@1.00': {
-            slidesPerView: 3,
-            spaceBetween: 10,
+            slidesPerView: 4,
+            spaceBetween: 15,
           },
           '@1.50': {
-            slidesPerView: 4,
-            spaceBetween: 20,
+            slidesPerView: 6,
+            spaceBetween: 15,
           },
-        }}>
+        }}
+        >
         {recentProducts.map((product, index) => (
           <SwiperSlide key={product.idProd} virtualIndex={index} className={styles.swiperSlide}>
             <div className={styles.productCard}>
-            <Link href={`/ProductPage/${product.idProd}`} className={styles.linkContainer}>
-              <div className={styles.slideContainer}>              
-                <Image
-                  src={product.images[0].img}  
-                  alt={product.nom} width={600} height={600}
-                  className={styles.productImage}
-                />
-                {/* Product name */}
-                <h3 className={styles.productName}>{product.nom}</h3> 
-                <p className={styles.productPrice}>
-                  {/* Product price range */}
-                  {product.minPrice === product.maxPrice
-                    ? `$${product.minPrice}`
-                    : `$${product.minPrice} - $${product.maxPrice}`}
-                </p>
+              <Link href={`/ProductPage/${product.idProd}`} className={styles.linkContainer}>
+                <div className={styles.slideContainer}>              
+                  <Image
+                    src={product.images[0].img}  
+                    alt={product.nom} width={600} height={600}
+                    className={styles.productImage}
+                  />
+                  {/* Product name */}
+                  <h3 className={styles.productName}>{product.nom}</h3> 
+                  <p className={styles.productPrice}>
+                    {/* Product price range */}
+                    {product.minPrice === product.maxPrice
+                      ? `$${product.minPrice}`
+                      : `$${product.minPrice} - $${product.maxPrice}`}
+                  </p>
 
                 </div>
               </Link>

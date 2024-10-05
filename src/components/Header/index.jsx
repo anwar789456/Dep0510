@@ -30,6 +30,39 @@ export default function Header({ sticky }) {
     //const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [screenWidth, setScreenWidth] = useState(0);
     const [data, setData] = useState([]);
+
+    const [cartItems, setCartItems] = useState([]);
+    const [cartTot, setcartTot] = useState(0);
+    // Function to get cart items from localStorage
+    const getCartItems = () => {
+        const items = localStorage.getItem('cartItems');
+        return items ? JSON.parse(items) : [];
+    };
+
+    // Function to update cart items when an item is added/removed
+    const updateCartItems = () => {
+        setCartItems(getCartItems());
+    };
+
+    // Listen for custom event to update the cart icon
+    useEffect(() => {
+        // Set initial cart items
+        updateCartItems();
+
+        // Custom event listener for 'cartUpdated' event
+        const handleCartUpdate = () => {
+            updateCartItems();
+        };
+
+        // Add the listener
+        window.addEventListener('cartUpdated', handleCartUpdate);
+
+        // Cleanup the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('cartUpdated', handleCartUpdate);
+        };
+    }, []);
+    
     useEffect(() => {
         const getProducts = async () => {
           try {
@@ -94,9 +127,7 @@ export default function Header({ sticky }) {
                 setIsSticky(false);
             }, 500);
         }
-        else{
-            setIsSticky(false);
-        }
+        
     };
     const handleClick = () => {
         setIsActive(!isActive);
@@ -120,7 +151,21 @@ export default function Header({ sticky }) {
             setIsActive(false);
         }
     };
+
+    const getProductPrice = (id) => {
+        const product = data.find((prod) => prod.idProd === id); 
+        return product.minPrice;
+    };
     const toggleCart = () => {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        let total = 0;
+        cartItems.forEach(item => {
+            const price = getProductPrice(item.id);
+            total += price * item.quantity;
+            
+        });
+        setcartTot(total);
+
         setIsCartOpen(prev => !prev);
         if (isActive){
             setIsActive(false);
@@ -161,7 +206,7 @@ export default function Header({ sticky }) {
                             <div className={styles.el}>
                                 <Link href="/about" onClick={handleLinkClick} className={styles.paragraph}>ABOUT</Link>
                             </div>
-                            </Magnetic>
+                        </Magnetic>
                         <Magnetic>
                             <div className={styles.el}>
                                 <Link href="/contact" onClick={handleLinkClick} className={styles.paragraph}>CONTACT</Link>
@@ -182,22 +227,39 @@ export default function Header({ sticky }) {
                                     <path d="M17.5 17.5L22 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                     <path d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C15.9706 20 20 15.9706 20 11Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
                                 </svg>
-                                <h1 className={styles.PIcon}>Search</h1>
+                                {/*<h1 className={styles.PIcon}>Search</h1>*/}
                             </div>
-                            <div  className={styles.cartIconDiv} onClick={toggleCart}>
-                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                    viewBox="0 0 24 24" 
-                                    width={22} 
-                                    height={22} 
-                                    fill={"none"}
-                                    className={styles.icon}>
-                                    <path d="M8 16H15.2632C19.7508 16 20.4333 13.1808 21.261 9.06908C21.4998 7.88311 21.6192 7.29013 21.3321 6.89507C21.045 6.5 20.4947 6.5 19.3941 6.5H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                                    <path d="M8 16L5.37873 3.51493C5.15615 2.62459 4.35618 2 3.43845 2H2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                                    <path d="M8.88 16H8.46857C7.10522 16 6 17.1513 6 18.5714C6 18.8081 6.1842 19 6.41143 19H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    <circle cx="10.5" cy="20.5" r="1.5" stroke="currentColor" strokeWidth="1.5" />
-                                    <circle cx="17.5" cy="20.5" r="1.5" stroke="currentColor" strokeWidth="1.5" />
-                                </svg>
-                                <h1 className={styles.PIcon}>Cart(2)</h1>
+                            <div className={styles.cartIconDiv} onClick={toggleCart}>
+                                {cartItems.length > 0 ? (
+                                    // Cart with red dot (when cartItems is not empty)
+                                    <svg xmlns="http://www.w3.org/2000/svg" 
+                                        viewBox="0 0 24 24" 
+                                        width={22} 
+                                        height={22} 
+                                        fill={"none"}
+                                        className={styles.icon}>
+                                        <path d="M8 16H15.2632C19.7508 16 20.4333 13.1808 21.261 9.06908C21.4998 7.88311 21.6192 7.29013 21.3321 6.89507C21.045 6.5 20.4947 6.5 19.3941 6.5H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                        <path d="M8 16L5.37873 3.51493C5.15615 2.62459 4.35618 2 3.43845 2H2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                        <path d="M8.88 16H8.46857C7.10522 16 6 17.1513 6 18.5714C6 18.8081 6.1842 19 6.41143 19H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        <circle cx="10.5" cy="20.5" r="1.5" stroke="currentColor" strokeWidth="1.5" />
+                                        <circle cx="17.5" cy="20.5" r="1.5" stroke="currentColor" strokeWidth="1.5" />
+                                        <circle cx="20" cy="5" r="4" fill="#8d0909" />
+                                    </svg>
+                                ) : (
+                                    // Normal cart (when cartItems is empty)
+                                    <svg xmlns="http://www.w3.org/2000/svg" 
+                                        viewBox="0 0 24 24" 
+                                        width={22} 
+                                        height={22} 
+                                        fill={"none"}
+                                        className={styles.icon}>
+                                        <path d="M8 16H15.2632C19.7508 16 20.4333 13.1808 21.261 9.06908C21.4998 7.88311 21.6192 7.29013 21.3321 6.89507C21.045 6.5 20.4947 6.5 19.3941 6.5H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                        <path d="M8 16L5.37873 3.51493C5.15615 2.62459 4.35618 2 3.43845 2H2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                        <path d="M8.88 16H8.46857C7.10522 16 6 17.1513 6 18.5714C6 18.8081 6.1842 19 6.41143 19H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        <circle cx="10.5" cy="20.5" r="1.5" stroke="currentColor" strokeWidth="1.5" />
+                                        <circle cx="17.5" cy="20.5" r="1.5" stroke="currentColor" strokeWidth="1.5" />
+                                    </svg>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -223,7 +285,7 @@ export default function Header({ sticky }) {
                 </AnimatePresence>
             </div>
             <SearchBar isOpen={isSearchOpen} products={data} onClose={() => setIsSearchOpen(false)} />
-            <CartContainer isOpen={isCartOpen} onClose={toggleCart} />
+            <CartContainer isOpen={isCartOpen} onClose={toggleCart} total={cartTot} />
         </>
     );
 }

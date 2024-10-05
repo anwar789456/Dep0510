@@ -17,10 +17,12 @@
         cursor: pointer;
     }
     .category_container {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, .4);
+        border-radius: 4px;
         overflow: hidden;
         position: relative;
-        border: 1px solid rgba(0, 0, 0, 0.1);
         transition: border-color 0.2s ease-in-out;
+        
         &:hover {
             border-color: rgba(0, 0, 0, 0.5);
         }
@@ -35,6 +37,7 @@
         position: relative;
         transform: scale(1);
         transition: transform 2s ease-in;
+        
     }
     .categoryImage{
         position: absolute;
@@ -60,11 +63,11 @@
         color: #f2f2f2;
         letter-spacing: .15em;
         line-height: 40px;
-        font-size: 25px;
-        font-family: Cormorant, serif;
+        font-size: 22px;
+        font-family: "Cormorant Garamond", serif;
         font-style: normal;
         text-transform: uppercase;
-        font-weight: 100;
+        font-weight: 500;
     }
     .button{
         width: 200px;
@@ -84,9 +87,9 @@
             font-size: 15px;
             word-spacing: .1em;
             text-transform: uppercase;
-            font-family: Cormorant, serif;
+            font-family: "Cormorant Garamond", serif;
             font-style: normal;
-            font-weight: 100; 
+            font-weight: 500; 
         }
     }
     @media (min-width: 1000px) {
@@ -117,8 +120,8 @@
             color: #f2f2f2;
             letter-spacing: .15em;
             line-height: 70px;
-            font-size: 35px;
-            font-family: Cormorant, serif;
+            font-size: 25px;
+            font-family: "Cormorant Garamond", serif;
             font-style: normal;
             text-transform: uppercase;
             font-weight: 500;

@@ -1,0 +1,110 @@
+.selectWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .selectTitle {
+    font-size: 15px;
+    color: rgba($color: #303030, $alpha: 0.7);
+    letter-spacing: .15em;
+    font-family: "Cormorant Garamond", serif;
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  .selectContainer {
+    position: relative;
+    width: 100%;
+  }
+  
+  .selectButton {
+    font-size: 15px;
+    color: rgba($color: #303030, $alpha: 0.7);
+    letter-spacing: .15em;
+    font-family: "Cormorant Garamond", serif;
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    padding: 15px;
+    //padding-left: 10px;
+    border: 1px solid rgba($color: #303030, $alpha: 0.2);
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    display: flex; /* Flexbox for alignment */
+    justify-content: space-between; /* Space between text and arrow */
+    align-items: center; /* Vertical centering */
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .selectButton:focus {
+    outline: none;
+    border-color: rgba($color: #303030, $alpha: 0.7);
+  }
+  
+  .arrowIcon {
+    display: inline-block;
+    position: relative;
+  
+    &::before {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      content: "";
+      border: solid rgba($color: #303030, $alpha: 0.7);
+      border-width: 0 1px 1px 0;
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(45deg);
+      transition: transform 0.3s ease;
+    }
+  }
+  
+  /* Rotate arrow up when the dropdown is open */
+  .selectButton.open .arrowIcon::before {
+    transform: rotate(-135deg); /* Up arrow */
+  }
+  
+  .selectList {
+    position: absolute;
+    width: 100%;
+    margin-top: 1px;
+    background-color: #f3f2ec;
+    border: 1px solid rgba($color: #303030, $alpha: 0.2);
+    border-radius: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .selectItem {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    color: rgba($color: #303030, $alpha: 0.8);
+    letter-spacing: .15em;
+    font-family: "Cormorant Garamond", serif;
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-bottom: 1px solid rgba($color: #303030, $alpha: 0.2);
+  }
+  
+  .selectItem:last-child {
+    border-bottom: none;
+  }
+  
+  .selectItem:hover, .selectItem.focused {
+    background-color: rgba($color: #303030, $alpha: 0.07);
+  }
+  
+  .selectItem:focus {
+    outline: none;
+  }
+  

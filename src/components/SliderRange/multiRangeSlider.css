@@ -37,9 +37,9 @@
   padding: 4px 15px;
 
   letter-spacing: .15em;
-  font-family: Cormorant, serif;
+  font-family: "Cormorant Garamond", serif;
   font-style: normal;
-  font-weight: 600; 
+  font-weight: 500; 
 }
 
 .slider__left-value {
